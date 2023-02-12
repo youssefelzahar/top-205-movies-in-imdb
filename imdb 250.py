@@ -2,6 +2,7 @@ import csv
 from itertools import zip_longest
 from bs4 import BeautifulSoup
 import requests
+import pandas 
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
@@ -48,3 +49,14 @@ for link in links:
 
     
 print(nomation_list,budget_list,gross_list,gross_us_list,opne_us_ca_list)
+
+dataframe = pandas.DataFrame(
+    {'nomation' : nomation_list,
+    'bidget' : budget_list,
+    'gross' : gross_list,
+    'gross_us' : gross_us_list,
+    "open_us_ca ":opne_us_ca_list
+    })
+
+dataframe.to_excel("original_data.xlsx")
+dataframe.to_csv("original_data.csv")
